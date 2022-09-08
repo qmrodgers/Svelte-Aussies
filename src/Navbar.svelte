@@ -1,88 +1,141 @@
 <script lang="ts">
-export let brandText: string;
+import Jumbotron from "./Jumbotron.svelte";
+
 export let navLinks: {name: string, uri: string}[];
 export let navIsOverlay: boolean = false;
+export let brandImgSrc: string;
 </script>
 
 <div class:overlayNav={navIsOverlay} class="header-wrapper">
-<div class="nav-wrapper">
 <nav class="navbar">
-    <div class="brand-box"><a class="brand-link" href="/">{brandText}</a></div>
     <div class="link-box">
-        {#each navLinks as navLink}
-            <a href={navLink.uri} class="nav-link">{navLink.name}</a>
+        <div class="links links-1">
+        {#each navLinks as navLink, i}
+            {#if i <= Math.floor(navLinks.length / 2) - 1}
+            <a href={navLink.uri} class="nav-link"><span>{navLink.name}</span></a>
+            {/if}
         {/each}
+        </div>
+        <div class="brand-box">
+            <img class="brand" src="{brandImgSrc}" alt="Moonlight Aussies" />
+        </div>
+        <div class="links links-2">
+            {#each navLinks as navLink, i}
+            {#if i > Math.floor(navLinks.length / 2) - 1}
+            <a href={navLink.uri} class="nav-link"><span>{navLink.name}</span></a>
+            {/if}
+        {/each}
+        </div>
     </div>
 </nav>
-</div>
 <slot></slot>
 </div>
 
 <style>
-.nav-wrapper {
-    width: 100vw;
-    background-color:var(--primary-white);
-    color: var(--primary-off-black);
-    z-index: 1;
-    position: fixed;
-
-}
 .navbar {
     display: flex;
     flex-direction: row;
-    height: 64px;
+    justify-content: center;
+    padding-block: 1.618rem;
+    padding-inline: 10vw;
+    width: 100%;
+    
 }
 .navbar > * {
-    flex-grow: 1;
-    flex-wrap: nowrap;
     display: flex;
     padding-inline: 1.618rem;
 }
 .brand-box {
-    justify-content: flex-start;
+    align-self: center;
+    justify-self: center;
+
+
+}
+.brand {
+    height: 25vh;
 }
 .link-box {
     font-size: inherit;
-    justify-content: flex-end;
-}
-.brand-link, .nav-link {
-    display: inline-flex;
-    align-items: center;
+    width: 100%;
+    display:flex;
     justify-content: center;
-    color: inherit;
-    height: 100%;
 }
-.brand-link {
-    font-size: var(--font-size-l);
-    font-family: 'Open Sans';
-    font-weight: 700;
-    text-transform: uppercase;
+.link-box > * {
+flex-wrap: nowrap;
+display: flex;
+width: calc(100%/3);
+}
+.links {
+    display: flex;
+    position: relative;
+    gap: 2.5vw;
+    bottom: 1.5vh;
+}
+.links-1 {
+    justify-content: flex-end;
+    right: -5vw;
+}
+.links-2 {
+    justify-content: flex-start;
+    left: -5vw;
+
+}
+.brand-box {
+    display: flex;
+    justify-content: center;
 }
 .nav-link {
-    width: 80px; 
-    font-family: 'Open Sans';
+    display: inline-flex;
+    font-size: var(--font-size-l);
+    color: var(--primary-off-white);
+    font-family: 'Noto Sans';
+    font-weight: 300;
+    letter-spacing: 1px;
+    
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 .nav-link:hover {
     text-shadow: 2px 2px var(--primary-off-black);
+}
+.header-wrapper {
+    width: 100vw;
+    display:flex;
+    justify-content: center;
 }
 .overlayNav {
     position: relative;
     top: 0;
     left: 0;
 }
-.header-wrapper {
-    overflow: hidden;
+a > span {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
 }
-.overlayNav >  .nav-wrapper{
-    background-color: transparent;
-    color: white;
-    position: relative;
+
+a > span::after {
+  content: '';
+  position: absolute;
+  align-self: flex-end;
+  display: block;
+  width: 200px;
+  height: 0.1rem;
+  background-color: hotpink;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
 }
-.overlayNav > .nav-wrapper {
-position: absolute;
-top: 0;
-left: 0;
+
+a:hover > span::after,
+a:focus > span::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2rem, 0);
 }
+
+
 
 
 </style>

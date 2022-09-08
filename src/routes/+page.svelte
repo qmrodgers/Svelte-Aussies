@@ -1,16 +1,13 @@
 <script lang="ts">
 import axios from 'axios';
 import Navbar from '../Navbar.svelte';
-import Jumbotron from '../Jumbotron.svelte';
 import jtCover from '../lib/images/puppy-1.jpg';
-import { resolveBaseUrl } from 'vite';
 
-let NavLinks: {name: string, uri: string}[] = [{name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
+
+let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
 
 const getImage = () => {
-    return new Promise((resolve, reject) => {
-        fetch()
-    })
+
 }
 </script>
 
@@ -18,26 +15,13 @@ const getImage = () => {
 <title>Moonlight Aussies</title>
 </svelte:head>
 <!-- Home Page HTML Content -->
-
-<Navbar brandText="Moonlight Aussies" navLinks={NavLinks} navIsOverlay={false}>
-    <!--
-
-        <Jumbotron
-imgSrc={{url: jtCover, altText: "hello", style: "height: 70vh; background-position: -30vw center; background-repeat: no-repeat; background-size: 130vw;"}} 
-slogan={{text: "Quality<br>Australian Shepherds<br>at a Great Price", style: "color: var(--primary-off-black);"}}
-subtitle={{text: "Getting forever friends for you!", style:""}}
-button={{text: "Find a friend", style: ""}}
-/>
-    -->
-
+<Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images/logo/SVG/MALogo.svg">
 </Navbar>
 
 <!-- end of Home Page HTML Content -->
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
-    /*global values*/
-
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');    /*global values*/
 
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
@@ -46,6 +30,7 @@ button={{text: "Find a friend", style: ""}}
         font-size: 16px;
         --font-size-l: calc(1rem * 1.618);
         --font-size-xl: calc(var(--font-size-l) * 1.618);
+        --font-size-xxl: calc(var(--font-size-xl) * 1.618);
         box-sizing: border-box;
 
     }
@@ -57,13 +42,28 @@ button={{text: "Find a friend", style: ""}}
     }
     :global(body) {
         background-color: var(--primary-off-white);
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 400;
+        background-image: url(https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 300;
+        overflow-x:hidden;
     }
     :global(a) {
         text-decoration: none;
         color: var(--primary-white);
     }
+    :global(body > div) {
+        width: 100vw;
+    }
+    .home-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 140vh;
+    }
+
+    
 
 
 </style>
