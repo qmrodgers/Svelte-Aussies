@@ -24,6 +24,8 @@ export let navIsOverlay: boolean = false;
     background-color:var(--primary-white);
     color: var(--primary-off-black);
     z-index: 1;
+    position: fixed;
+
 }
 .navbar {
     display: flex;
@@ -52,9 +54,13 @@ export let navIsOverlay: boolean = false;
 }
 .brand-link {
     font-size: var(--font-size-l);
+    font-family: 'Open Sans';
+    font-weight: 700;
+    text-transform: uppercase;
 }
 .nav-link {
     width: 80px; 
+    font-family: 'Open Sans';
 }
 .nav-link:hover {
     text-shadow: 2px 2px var(--primary-off-black);
