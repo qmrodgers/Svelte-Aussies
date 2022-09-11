@@ -16,7 +16,8 @@ let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: 
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
 <Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
-hello
+<h1>Bringing Aussies to the evansville / vanderburgh area for over 5 years.</h1>
+<div class="divider divider-1"></div>
 </Segment>
 
 <Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
@@ -36,6 +37,7 @@ hello
         --font-size-l: calc(1rem * 1.618);
         --font-size-xl: calc(var(--font-size-l) * 1.618);
         --font-size-xxl: calc(var(--font-size-xl) * 1.618);
+        --font-size-jumbo: calc(var(--font-size-xxl) * 1.618);
         box-sizing: border-box;
 
     }
@@ -58,6 +60,32 @@ hello
     }
     :global(body > div) {
         width: 100vw;
+    }
+    h1 {
+        color: #FEFDED;
+        text-shadow: 2px 2px 3px black;
+        font-family: 'Noto Sans', sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 4px;
+        font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-xxl));
+        text-align: right;
+        grid-column: 3/13;
+        grid-row: 4/16;
+        align-self: center;
+        
+    }
+
+    .divider {
+        background-color: #FEFDED;
+        height: 90%;
+        width: 5px;
+        /*border-radius: 4px;*/
+        justify-self: center;
+        align-self: center;
+        grid-column: 13 / 13;
+        grid-row: 6 / 18;
+        box-shadow: 2px 2px 3px black;
     }
 
 

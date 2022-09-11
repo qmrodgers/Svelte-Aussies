@@ -20,8 +20,8 @@ export let backgroundAlt: string;
 .segment {
     z-index: 0;
     position: relative;
-    grid-template-columns: repeat(25, 1fr);
-    grid-template-rows: repeat(25, 1fr);
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
     display: grid;
     place-items: center;
     height: 100vh;
@@ -52,15 +52,16 @@ grid-row: 1 / -1;
 }
 
 .segment > :global(.content) {
+    place-self: start;
     display: grid;
     /*background-color: burlywood;*/
-    grid-template-columns: repeat(25, 1fr);
-    grid-template-rows: repeat(25, 1fr);
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
     grid-column-start: 1;
-    grid-column-end: 26;
+    grid-column-end: 25;
     grid-row-start: 6;
-    grid-row-end: 26;
-    width: 100%;
+    grid-row-end: 25;
+    width: 100vw;
     height: 100%;
     place-items: center;
 }
