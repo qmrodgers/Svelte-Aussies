@@ -1,22 +1,27 @@
 <script lang="ts">
 import axios from 'axios';
-import Navbar from '../Navbar.svelte';
-import jtCover from '../lib/images/puppy-1.jpg';
+import Segment from '../components/Segment.svelte';
+import Navbar from '../components/Navbar.svelte';
 
 
 let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
 
-const getImage = () => {
-
-}
 </script>
 
 <svelte:head>
 <title>Moonlight Aussies</title>
+<!-- Preload first image --><link rel="preload" as="image" href={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"}/>
 </svelte:head>
 <!-- Home Page HTML Content -->
-<Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images/logo/SVG/MALogo.svg">
-</Navbar>
+<Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
+
+<Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
+hello
+</Segment>
+
+<Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
+
+</Segment>
 
 <!-- end of Home Page HTML Content -->
 
@@ -26,7 +31,7 @@ const getImage = () => {
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
         --primary-white: hsl(0, 0%, 100%);
-        --primary-off-black: hsl(0, 0%, 4%);
+        --primary-off-black: #2E2E2E;
         font-size: 16px;
         --font-size-l: calc(1rem * 1.618);
         --font-size-xl: calc(var(--font-size-l) * 1.618);
@@ -41,10 +46,8 @@ const getImage = () => {
 
     }
     :global(body) {
+        min-height: 100vh;
         background-color: var(--primary-off-white);
-        background-image: url(https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public);
-        background-repeat: no-repeat;
-        background-size: 100%;
         font-family: 'Noto Sans', sans-serif;
         font-weight: 300;
         overflow-x:hidden;
@@ -56,12 +59,11 @@ const getImage = () => {
     :global(body > div) {
         width: 100vw;
     }
-    .home-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 140vh;
-    }
+
+
+
+
+    
 
     
 

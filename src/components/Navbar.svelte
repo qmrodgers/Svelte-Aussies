@@ -36,15 +36,11 @@ export let brandImgSrc: string;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-block: 1.618rem;
-    padding-inline: 10vw;
+    padding-block: 1rem;
     width: 100%;
     
 }
-.navbar > * {
-    display: flex;
-    padding-inline: 1.618rem;
-}
+
 .brand-box {
     align-self: center;
     justify-self: center;
@@ -52,11 +48,11 @@ export let brandImgSrc: string;
 
 }
 .brand {
-    height: 25vh;
+    width: 200px;
 }
 .link-box {
     font-size: inherit;
-    width: 100%;
+    width: 800px;
     display:flex;
     justify-content: center;
 }
@@ -68,16 +64,16 @@ width: calc(100%/3);
 .links {
     display: flex;
     position: relative;
-    gap: 2.5vw;
+    gap: 2rem;
     bottom: 1.5vh;
+    align-items: center;
 }
 .links-1 {
     justify-content: flex-end;
-    right: -5vw;
 }
 .links-2 {
     justify-content: flex-start;
-    left: -5vw;
+
 
 }
 .brand-box {
@@ -87,52 +83,58 @@ width: calc(100%/3);
 .nav-link {
     display: inline-flex;
     font-size: var(--font-size-l);
-    color: var(--primary-off-white);
+    color: #FEFDED;
     font-family: 'Noto Sans';
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 1px;
-    
+    position: relative;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: fit-content;
 }
-.nav-link:hover {
-    text-shadow: 2px 2px var(--primary-off-black);
+.nav-link {
+    text-shadow: 2px 2px 2px #000000;
 }
 .header-wrapper {
     width: 100vw;
     display:flex;
     justify-content: center;
+    z-index: 1;
 }
 .overlayNav {
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
 }
-a > span {
+.nav-link > span {
     color: inherit;
     font-size: inherit;
     font-family: inherit;
     font-weight: inherit;
     letter-spacing: inherit;
+    text-transform: uppercase;
 }
 
-a > span::after {
+.nav-link > span::after {
   content: '';
   position: absolute;
-  align-self: flex-end;
-  display: block;
-  width: 200px;
+  display: inline-flex;
+  width: 0%;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  margin: 0 auto;
   height: 0.1rem;
-  background-color: hotpink;
+  background-color: #FEFDED;
   opacity: 0;
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 300ms, transform 300ms, width 400ms;
 }
 
-a:hover > span::after,
-a:focus > span::after {
+.nav-link:hover > span::after,
+.nav-link:focus > span::after {
   opacity: 1;
   transform: translate3d(0, 0.2rem, 0);
+  width: 70%;
 }
 
 
