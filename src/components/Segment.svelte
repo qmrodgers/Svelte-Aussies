@@ -22,21 +22,27 @@ export let backgroundAlt: string;
     position: relative;
     grid-template-columns: repeat(24, 1fr);
     grid-template-rows: repeat(24, 1fr);
+    
     display: grid;
     place-items: center;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+
 }
 .segment > * {
 grid-column: 1 / -1;
 grid-row: 1 / -1;
 }
 .segment-bg {
+    position: absolute;
     z-index: -2;
-    min-width: 110vw;
-    min-height: 110vh;
-    overflow-y:hidden;
+    min-width: 130vw;
+    min-height: 130vh;
+    left: -200px;
+    top: 0;
+    place-self: center;
+
     
 }
 .segment-cover {
@@ -64,6 +70,7 @@ grid-row: 1 / -1;
     width: 100vw;
     height: 100%;
     place-items: center;
+    
 }
 
 

@@ -94,6 +94,7 @@ width: calc(100%/3);
 }
 .nav-link {
     text-shadow: 2px 2px 2px #000000;
+
 }
 .header-wrapper {
     width: 100vw;
@@ -113,6 +114,7 @@ width: calc(100%/3);
     font-weight: inherit;
     letter-spacing: inherit;
     text-transform: uppercase;
+    
 }
 
 .nav-link > span::after {
@@ -128,6 +130,7 @@ width: calc(100%/3);
   background-color: #FEFDED;
   opacity: 0;
   transition: opacity 300ms, transform 300ms, width 400ms;
+  box-shadow: 2px 3px 3px black;
 }
 
 .nav-link:hover > span::after,
@@ -135,6 +138,18 @@ width: calc(100%/3);
   opacity: 1;
   transform: translate3d(0, 0.2rem, 0);
   width: 70%;
+}
+
+.nav-link:focus {
+    outline: none;
+
+    
+
+}
+
+.nav-link:focus > span {
+    color: #3C7438;
+
 }
 
 
