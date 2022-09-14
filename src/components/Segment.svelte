@@ -1,13 +1,14 @@
 <script lang="ts">
 import { compute_rest_props } from "svelte/internal";
 
+export let segmentId: string;
 export let backgroundSrc: string;
 export let backgroundAlt: string;
 
 </script>
 
 
-<section class="segment">
+<section class="segment" id={segmentId}>
 <div class="segment-cover"></div>
 <img src={backgroundSrc} alt={backgroundAlt} class="segment-bg"/>
 <div class="content">

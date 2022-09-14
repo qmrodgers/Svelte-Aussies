@@ -2,11 +2,62 @@
 import axios from 'axios';
 import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
+import { error } from '@sveltejs/kit';
+import type { AppendTarget } from 'svelte/types/compiler/interfaces';
+import type { Mouse } from '@playwright/test';
 
 
-let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
 
+const Sections: string[] = ["seg-1", "seg-2"];
+let currentSection: number = 0;
+const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
+
+
+//Scroll position variables
+let yPositionPrevious: number;
+let yPosition: number;
+let yTolerance: number = 50;
+
+
+//Targeted scrolling
+export function scrollToElement({target}: any) {
+    try {
+        let el: HTMLElement | null = document.querySelector(target.getAttribute('href'));
+        if (!el) {
+            return;
+        }
+        el.scrollIntoView({behavior: 'smooth'});
+    }
+    catch (error) {
+        console.log(error);
+    }
+    
+}
+
+
+
+function scrollBetween(yValue: number) {
+const scrollDistance = yValue - yPositionPrevious;
+
+if (Math.abs(scrollDistance) < 50) {
+    console.log('less than');
+    return;
+}
+
+if (scrollDistance > 0) {
+    
+}
+
+}
+
+
+
+
+$: scrollBetween(yPosition);
 </script>
+
+<svelte:window bind:scrollY={yPosition}/>
+
 
 <svelte:head>
 <title>Moonlight Aussies</title>
@@ -21,15 +72,15 @@ let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: 
 <!-- Home Page HTML Content -->
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
-<Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
+<Segment segmentId="seg-1" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
 <div class="segment-text-container">
     <h1 class="segment-header">Taking great care in raising the perfect Australian</h1>
-    <button class="segment-button"><span>Learn More</span></button>
+    <button class="segment-button"><a href="#seg-2" on:click|preventDefault={scrollToElement}>Learn More</a></button>
 </div>
 <div class="divider divider-1"></div>
 </Segment>
 
-<Segment backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
+<Segment segmentId="seg-2" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
 
 </Segment>
 
@@ -111,6 +162,7 @@ let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: 
         text-align:center;
         align-self: center;
         border-radius: 8px;
+        backdrop-filter: blur(8px);
         
         /* -webkit-text-fill-color: #FEFDED; Will override color (regardless of order) */
         /* -webkit-text-stroke-width: 2px; */
@@ -166,7 +218,7 @@ let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: 
         color: #FEFDED;           
     }
 
-    .segment-button > span::after {
+    .segment-button > a::after {
         content: '';
         position: absolute;
         display: inline-flex;
@@ -183,8 +235,8 @@ let NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: 
 
     }
 
-    .segment-button:hover > span::after,
-    .segment-button:focus > span::after {
+    .segment-button:hover > a::after,
+    .segment-button:focus > a::after {
         opacity: 1;
         transform: translate3d(0, 0.2rem, 0);
         width: 70%;
