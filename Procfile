@@ -1,3 +1,3 @@
 {
-    "start": "yarn vite --host"
+    "start": "yarn vite"
 }
