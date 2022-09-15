@@ -4,13 +4,14 @@ import { compute_rest_props } from "svelte/internal";
 export let segmentId: string;
 export let backgroundSrc: string;
 export let backgroundAlt: string;
+export let backgroundId: string;
 
 </script>
 
 
 <section class="segment" id={segmentId}>
 <div class="segment-cover"></div>
-<img src={backgroundSrc} alt={backgroundAlt} class="segment-bg"/>
+<img src={backgroundSrc} alt={backgroundAlt} id={backgroundId} class={"segment-bg"}/>
 <div class="content">
     <slot></slot>
 </div>
@@ -44,9 +45,11 @@ grid-row: 1 / -1;
     top: 0;
     place-self: center;
 
+
     
 }
 .segment-cover {
+    
     position: absolute;
     top: 0;
     left: 0;
@@ -54,7 +57,7 @@ grid-row: 1 / -1;
     height: 100vh;
     width: 100vw;
     background-color: #000000;
-    opacity: .4;
+    opacity: 0.2;
 
 }
 

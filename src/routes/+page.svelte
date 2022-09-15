@@ -72,7 +72,7 @@ $: scrollBetween(yPosition);
 <!-- Home Page HTML Content -->
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
-<Segment segmentId="seg-1" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
+<Segment backgroundId="background-1" segmentId="seg-1" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
 <div class="segment-text-container">
     <h1 class="segment-header">Taking great care in raising the perfect Australian</h1>
     <button class="segment-button"><a href="#seg-2" on:click|preventDefault={scrollToElement}>Learn More</a></button>
@@ -87,12 +87,13 @@ $: scrollBetween(yPosition);
 <!-- end of Home Page HTML Content -->
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');    /*global values*/
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Kalam:wght@300;400;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');    /*global values*/
 
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
         --primary-white: hsl(0, 0%, 100%);
         --primary-off-black: #2E2E2E;
+        --focus-color: #274d24;
         font-size: 16px;
         --font-size-l: calc(1rem * 1.618);
         --font-size-xl: calc(var(--font-size-l) * 1.618);
@@ -142,7 +143,7 @@ $: scrollBetween(yPosition);
         }
     }
     .segment-text-container {
-        grid-column: 1/17;
+        grid-column: 11/25;
         grid-row: 1/20;
         display: flex;
         flex-direction: column;
@@ -154,15 +155,15 @@ $: scrollBetween(yPosition);
     .segment-header {
         color: #FEFDED;
         text-shadow: 2px 2px 8px black;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Amatic SC', sans-serif;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 700;
         letter-spacing: .35vw;
-        font-size: clamp(var(--font-size-xl), 4vmax, var(--font-size-xxl));
+        font-size: clamp(var(--font-size-xxl), 5vmax, 200px);
         text-align:center;
         align-self: center;
         border-radius: 8px;
-        backdrop-filter: blur(8px);
+
         
         /* -webkit-text-fill-color: #FEFDED; Will override color (regardless of order) */
         /* -webkit-text-stroke-width: 2px; */
@@ -171,11 +172,14 @@ $: scrollBetween(yPosition);
         /* animation */
         opacity: 0;
         width: 80%;
-        background-color: hsla(0, 0%, 8%, 0.5);
+        /*background-color: hsla(0, 0%, 8%, 0.5);
+                backdrop-filter: blur(8px);
+        */
         animation: fade-in-translate 2.2s ease;
         animation-delay: 400ms;
         animation-fill-mode: forwards;
     }
+
 
     /*
     .divider {
@@ -195,11 +199,10 @@ $: scrollBetween(yPosition);
         font-size: clamp(var(--font-size-l), 3vmax, var(--font-size-xl));
         background-color: transparent;
         cursor: pointer;
-        font-family: 'Noto Sans', sans-serif;
-        font-weight: 600;
+        font-family: 'Kalam', sans-serif;
+        font-weight: 400;
         width: fit-content;
         letter-spacing: .15vw;
-        text-transform: uppercase;
         padding: 10px;
         align-self: center;
         border: none;
@@ -214,9 +217,6 @@ $: scrollBetween(yPosition);
         animation-fill-mode: forwards;
         
     }
-    .segment-button:focus, .segment-button:hover {
-        color: #FEFDED;           
-    }
 
     .segment-button > a::after {
         content: '';
@@ -225,7 +225,7 @@ $: scrollBetween(yPosition);
         width: 0%;
         left: 0;
         right: 0;
-        bottom: 4px;
+        bottom: 14px;
         margin: 0 auto;
         height: 0.15rem;
         background-color: #FEFDED;
@@ -241,50 +241,32 @@ $: scrollBetween(yPosition);
         transform: translate3d(0, 0.2rem, 0);
         width: 70%;
     }
-    @media screen and (min-width: 1900px) {
 
-        .segment-text-container {
-        grid-column: 2/15;
-        grid-row: 1/21;
-        }
-        :global(.segment > .segment-bg) {
-            
-            top: -300px !important;
-            left: 0 !important;
-            
-        }
+    /* Global values for specific containers*/
+    :global(#background-1) {
+        transform: scaleX(-1);
+        left: -25%;
+        top: min(-15vw, -5vh);
     }
-
-    @media screen and (min-width: 1600px) and (max-width: 1899px) {
-        .segment-text-container {
-        grid-column: 1/15;
-        grid-row: 1/21;
-        }
-
-
-        :global(.segment > .segment-bg) {
-            
-            top: -100px !important;
-            left: 0 !important;
-            
-        }
-    }
-
-    @media screen and (max-width: 900px) {
+    
+    @media screen and (max-width: 1280px) {
         .segment-text-container {
         grid-column: 2/24;
-        grid-row: 1/25;
+        grid-row: 1/21;
         }
 
-        :global(.segment > .segment-bg) {
-            
-            min-height: 100vh !important;
-            min-width: 100vw !important;
-            top: auto !important;
-            left: -450px !important;
-            
-        }
     }
+
+
+
+    @media screen and (max-width: 900px) {
+        :global(.segment > .segment-bg) {
+            left: -45vh !important;
+            top: 0 !important;
+        }
+
+    }
+
 
 
 
