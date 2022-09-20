@@ -143,7 +143,7 @@ $: scrollBetween(yPosition);
         }
     }
     .segment-text-container {
-        grid-column: 11/25;
+        grid-column: 1/15;
         grid-row: 1/20;
         display: flex;
         flex-direction: column;
@@ -196,13 +196,12 @@ $: scrollBetween(yPosition);
     */
     .segment-button {
         position: relative;
-        font-size: clamp(var(--font-size-l), 3vmax, var(--font-size-xl));
+        font-size: clamp(var(--font-size-l), 2.8vmax, var(--font-size-xl));
         background-color: transparent;
         cursor: pointer;
         font-family: 'Kalam', sans-serif;
         font-weight: 400;
         width: fit-content;
-        letter-spacing: .15vw;
         padding: 10px;
         align-self: center;
         border: none;
@@ -210,6 +209,7 @@ $: scrollBetween(yPosition);
         -webkit-text-stroke: 0px black;
         text-shadow: 2px 2px 8px black;
         transition: color 300ms;
+        text-transform: uppercase;
         /* animation */
         opacity: 0;
         animation: fade-in 1s ease;
@@ -227,7 +227,7 @@ $: scrollBetween(yPosition);
         right: 0;
         bottom: 14px;
         margin: 0 auto;
-        height: 0.15rem;
+        height: 0.1rem;
         background-color: #FEFDED;
         opacity: 0;
         transition: opacity 300ms, transform 300ms, width 400ms;
@@ -244,8 +244,7 @@ $: scrollBetween(yPosition);
 
     /* Global values for specific containers*/
     :global(#background-1) {
-        transform: scaleX(-1);
-        left: -25%;
+        right: -25%;
         top: min(-15vw, -5vh);
     }
     

@@ -56,8 +56,8 @@ grid-row: 1 / -1;
     z-index: -1;
     height: 100vh;
     width: 100vw;
-    background-color: #000000;
-    opacity: 0.2;
+    background: linear-gradient(to right, hsla(0, 0%, 0%, .8) 40%, hsla(0, 0%, 0%, 0) 60%);
+    opacity: 0.8;
 
 }
 
