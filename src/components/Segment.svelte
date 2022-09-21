@@ -1,17 +1,13 @@
 <script lang="ts">
 import { compute_rest_props } from "svelte/internal";
-
+export let coverId: string;
 export let segmentId: string;
-export let backgroundSrc: string;
-export let backgroundAlt: string;
-export let backgroundId: string;
 
 </script>
 
 
 <section class="segment" id={segmentId}>
-<div class="segment-cover"></div>
-<img src={backgroundSrc} alt={backgroundAlt} id={backgroundId} class={"segment-bg"}/>
+<div class="segment-cover" id={coverId}></div>
 <div class="content">
     <slot></slot>
 </div>
@@ -36,18 +32,7 @@ export let backgroundId: string;
 grid-column: 1 / -1;
 grid-row: 1 / -1;
 }
-.segment-bg {
-    position: absolute;
-    z-index: -2;
-    min-width: 130vw;
-    min-height: 130vh;
-    left: -200px;
-    top: 0;
-    place-self: center;
 
-
-    
-}
 .segment-cover {
     
     position: absolute;
@@ -80,7 +65,7 @@ grid-row: 1 / -1;
 
 @media screen and (max-width: 1280px) {
     .segment-cover {
-        background: linear-gradient(hsla(0, 0%, 0%, 0) 20%, hsla(0, 0%, 0%, 1) 60%, hsla(0, 0%, 0%, 0) 80%);
+        background: linear-gradient(hsla(0, 0%, 0%, .1) 10%, hsla(0, 0%, 0%, .8) 50%, hsla(0, 0%, 0%, .1) 90%);
     }
 }
 

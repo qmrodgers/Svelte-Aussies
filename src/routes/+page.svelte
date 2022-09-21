@@ -1,22 +1,23 @@
+
+
 <script lang="ts">
-import axios from 'axios';
+export let data: import('./$types').PageData;
+
 import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
-import { error } from '@sveltejs/kit';
-import type { AppendTarget } from 'svelte/types/compiler/interfaces';
-import type { Mouse } from '@playwright/test';
-
+import { onMount } from 'svelte';
 
 
 const Sections: string[] = ["seg-1", "seg-2"];
 let currentSection: number = 0;
 const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
 
+let segmentCheckpoints: number[] = new Array<number>(3);
+let currentCheckpoint: number = 0;
 
-//Scroll position variables
-let yPositionPrevious: number;
+let windowHeight: number;
 let yPosition: number;
-let yTolerance: number = 50;
+
 
 
 //Targeted scrolling
@@ -35,28 +36,39 @@ export function scrollToElement({target}: any) {
 }
 
 
+onMount(() => {
 
-function scrollBetween(yValue: number) {
-const scrollDistance = yValue - yPositionPrevious;
 
-if (Math.abs(scrollDistance) < 50) {
-    console.log('less than');
-    return;
-}
+});
 
-if (scrollDistance > 0) {
-    
-}
+const scrollTimeout = (position: number) => {setTimeout(() => {
+window.scrollTo({top: position, behavior: "smooth"})
+}, 1000)};
 
-}
+export function scrollBetween(yValue: number) {
+
+    /*setTimeout(() => {
+        if (yPosition - yValue > 25) {
+        window.scrollTo({top: window.innerHeight, behavior: "smooth"});
+        console.log("hello");
+    }
+    }, 10)
+    */
+
+};
+
+
+const map
+
 
 
 
 
 $: scrollBetween(yPosition);
+$: 
 </script>
 
-<svelte:window bind:scrollY={yPosition}/>
+<svelte:window bind:scrollY={yPosition} bind:innerHeight={windowHeight}/>
 
 
 <svelte:head>
@@ -67,29 +79,31 @@ $: scrollBetween(yPosition);
 <meta name="author" content="Quaid Rodgers"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<!-- Preload first image --><link rel="preload" as="image" href={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"}/>
+
 </svelte:head>
 <!-- Home Page HTML Content -->
+
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
-<Segment backgroundId="background-1" segmentId="seg-1" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/504817d5-f6c4-4c87-2629-819c91be4b00/public"} backgroundAlt="Australian Shepherd Puppy hidden behind leaves">
+<img id="background-1" class="bg" src={'images/backgrounds/background-1.jpg'} style={`z-index: 0; opacity: ${1 - (yPosition / segmentCheckpoints[1])};`} alt="Dog Background 1"/>
+<img id="background-2" class="bg" src={'images/backgrounds/background-2.webp'} style="z-index: -1;" alt="Dog Background 2"/>
+
+<Segment segmentId="seg-1" coverId="cover-1">
 <div class="segment-text-container">
-    <h1 class="segment-header">Taking great care in raising the perfect Australian</h1>
+    <h1 class="segment-header">{yPosition} {segmentCheckpoints[1]} {windowHeight} Taking great care in raising the perfect Australian</h1>
     <button class="segment-button"><a href="#seg-2" on:click|preventDefault={scrollToElement}>Learn More</a></button>
-    <div class="test">hello</div>
 </div>
 <div class="divider divider-1"></div>
 </Segment>
 
-<Segment backgroundId="background-2" segmentId="seg-2" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
+<Segment segmentId="seg-2" coverId="cover-2">
 
 </Segment>
 
 <!-- end of Home Page HTML Content -->
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Kalam:wght@300;400;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');    /*global values*/
-
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
 
     :global(:root) {
@@ -109,6 +123,7 @@ $: scrollBetween(yPosition);
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        
 
     }
     :global(body) {
@@ -126,6 +141,32 @@ $: scrollBetween(yPosition);
     :global(body > div) {
         width: 100vw;
     }
+    .bg {
+
+    position: fixed;
+    z-index: -2;
+    min-width: 135vw;
+    min-height: 135vh;
+    max-width: 2000px;
+    aspect-ratio: 1;
+    
+    
+    top: 0;
+    place-self: center;
+
+    }
+        /* Global values for specific containers*/
+        :global(#background-1) {
+        
+        top: min(-20vw, -10vh);
+        right: -35%;
+    }
+
+    :global(#background-2) {
+        
+        top: min(-15vw,-5vh);
+    }
+
     @keyframes fade-in-translate {
         from {
             opacity: 0;
@@ -146,8 +187,8 @@ $: scrollBetween(yPosition);
         }
     }
     .segment-text-container {
-        grid-column: 1/15;
-        grid-row: 2/23;
+        grid-column: 1/16;
+        grid-row: 1/23;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -161,7 +202,7 @@ $: scrollBetween(yPosition);
         font-family: 'Amatic SC', sans-serif;
         text-transform: uppercase;
         font-weight: 700;
-        letter-spacing: .35vw;
+        letter-spacing: 0.30vw;
         font-size: clamp(var(--font-size-xxl), 5vmax, 200px);
         text-align:center;
         align-self: center;
@@ -245,16 +286,7 @@ $: scrollBetween(yPosition);
         width: 70%;
     }
 
-    /* Global values for specific containers*/
-    :global(#background-1) {
-        right: -25%;
-        top: min(-15vw, -5vh);
-    }
 
-    :global(#background-2) {
-        
-        top: min(-15vw,-5vh);
-    }
     
     @media screen and (max-width: 1280px) {
         .segment-text-container {
@@ -262,6 +294,13 @@ $: scrollBetween(yPosition);
         grid-row: 1/21;
         
         }
+
+        :global(#background-1) {
+        
+        
+        right: -30%;
+    }
+        
 
     }
 
@@ -272,6 +311,13 @@ $: scrollBetween(yPosition);
             left: -45vh !important;
             top: 0 !important;
         }
+
+
+        :global(#background-1) {
+        
+        top: -40vh;
+        right: -130%;
+    }
 
     }
 

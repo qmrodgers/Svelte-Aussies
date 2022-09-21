@@ -48,7 +48,7 @@ export let brandImgSrc: string;
 
 }
 .brand {
-    width: 200px;
+    width: 150px;
 }
 .link-box {
     font-size: inherit;
@@ -70,10 +70,11 @@ width: calc(100%/3);
 }
 .links-1 {
     justify-content: flex-end;
+    right: -30px;
 }
 .links-2 {
     justify-content: flex-start;
-
+    left: -30px;
 
 }
 .brand-box {
@@ -84,9 +85,9 @@ width: calc(100%/3);
     display: inline-flex;
     font-size: var(--font-size-l);
     color: #FEFDED;
-    font-family: 'Kalam';
+    font-family: 'Reem Kufi Fun';
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     position: relative;
     align-items: center;
     justify-content: center;
