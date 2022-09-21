@@ -76,11 +76,12 @@ $: scrollBetween(yPosition);
 <div class="segment-text-container">
     <h1 class="segment-header">Taking great care in raising the perfect Australian</h1>
     <button class="segment-button"><a href="#seg-2" on:click|preventDefault={scrollToElement}>Learn More</a></button>
+    <div class="test">hello</div>
 </div>
 <div class="divider divider-1"></div>
 </Segment>
 
-<Segment segmentId="seg-2" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
+<Segment backgroundId="background-2" segmentId="seg-2" backgroundSrc={"https://imagedelivery.net/UbkHQ0oC61zF_JRdwCtpAw/99dc5385-5230-486b-9e4b-0f37a28fdd00/public"} backgroundAlt="Dog!">
 
 </Segment>
 
@@ -88,6 +89,8 @@ $: scrollBetween(yPosition);
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Kalam:wght@300;400;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');    /*global values*/
+
+
 
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
@@ -144,7 +147,7 @@ $: scrollBetween(yPosition);
     }
     .segment-text-container {
         grid-column: 1/15;
-        grid-row: 1/20;
+        grid-row: 2/23;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -247,11 +250,17 @@ $: scrollBetween(yPosition);
         right: -25%;
         top: min(-15vw, -5vh);
     }
+
+    :global(#background-2) {
+        
+        top: min(-15vw,-5vh);
+    }
     
     @media screen and (max-width: 1280px) {
         .segment-text-container {
         grid-column: 2/24;
         grid-row: 1/21;
+        
         }
 
     }

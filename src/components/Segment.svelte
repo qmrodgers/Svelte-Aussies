@@ -78,5 +78,11 @@ grid-row: 1 / -1;
 }
 
 
+@media screen and (max-width: 1280px) {
+    .segment-cover {
+        background: linear-gradient(hsla(0, 0%, 0%, 0) 20%, hsla(0, 0%, 0%, 1) 60%, hsla(0, 0%, 0%, 0) 80%);
+    }
+}
+
 
 </style>
