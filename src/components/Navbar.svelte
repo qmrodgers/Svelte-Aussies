@@ -4,6 +4,8 @@ import Jumbotron from "./Jumbotron.svelte";
 export let navLinks: {name: string, uri: string}[];
 export let navIsOverlay: boolean = false;
 export let brandImgSrc: string;
+
+
 </script>
 
 <div class:overlayNav={navIsOverlay} class="header-wrapper">
@@ -12,7 +14,7 @@ export let brandImgSrc: string;
         <div class="links links-1">
         {#each navLinks as navLink, i}
             {#if i <= Math.floor(navLinks.length / 2) - 1}
-            <a href={navLink.uri} class="nav-link"><span>{navLink.name}</span></a>
+            <a href={navLink.uri} on:click|preventDefault={() => {document.querySelector(navLink.uri)?.scrollIntoView({behavior: 'smooth'})}} class="nav-link"><span>{navLink.name}</span></a>
             {/if}
         {/each}
         </div>

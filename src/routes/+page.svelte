@@ -6,13 +6,14 @@ export let data: import('./$types').PageData;
 import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
 import { onMount } from 'svelte';
+	import { validate_each_argument } from 'svelte/internal';
 
 
-const Sections: string[] = ["seg-1", "seg-2"];
+
 let currentSection: number = 0;
-const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "/"}, {name: "About", uri: "/"}, {name: "Dogs", uri: "./Dogs/"},  {name: "Contact", uri: "/"}];
+const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "#home-segment"}, {name: "About", uri: "#about-segment"}, {name: "Dogs", uri: "#dogs-segment"},  {name: "Contact", uri: "#contact-segment"}];
 
-let segmentCheckpoints: number[] = new Array<number>(3);
+let segmentCheckpoints: number[] = new Array<number>(2);
 let currentCheckpoint: number = 0;
 
 let windowHeight: number;
@@ -28,6 +29,7 @@ export function scrollToElement({target}: any) {
             return;
         }
         el.scrollIntoView({behavior: 'smooth'});
+
     }
     catch (error) {
         console.log(error);
@@ -37,7 +39,6 @@ export function scrollToElement({target}: any) {
 
 
 onMount(() => {
-
 
 });
 
@@ -58,23 +59,27 @@ export function scrollBetween(yValue: number) {
 };
 
 
-const map
+function mapCheckpoints(Windowsize: number) {
+[...segmentCheckpoints].forEach((element, index) => {
+segmentCheckpoints[index] = windowHeight * (index + 1);
+
+});
+
+}
 
 
 
 
-
-$: scrollBetween(yPosition);
-$: 
+$: mapCheckpoints(windowHeight);
 </script>
 
 <svelte:window bind:scrollY={yPosition} bind:innerHeight={windowHeight}/>
 
 
 <svelte:head>
-<title>Moonlight Aussies</title>
+<title>Moonlight Aussies - Evansville, Indiana</title>
 <meta charset="UTF-8"/>
-<meta name="description" content="Moonlight Aussies is a family friendly breeder that takes great care in raising the perfect Australian."/>
+<meta name="description" content="Moonlight Aussies - A family-friendly breeder based in Evansville, Indiana that takes great care in raising the perfect Australian Shepherd."/>
 <meta name="keywords" content="Australian Shepherd, Puppies for Sale, Evansville Indiana, Dogs for Sale, Australian Shepherds, Aussies, Moonlight Aussies"/>
 <meta name="author" content="Quaid Rodgers"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -85,18 +90,21 @@ $:
 
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
-<img id="background-1" class="bg" src={'images/backgrounds/background-1.jpg'} style={`z-index: 0; opacity: ${1 - (yPosition / segmentCheckpoints[1])};`} alt="Dog Background 1"/>
-<img id="background-2" class="bg" src={'images/backgrounds/background-2.webp'} style="z-index: -1;" alt="Dog Background 2"/>
 
-<Segment segmentId="seg-1" coverId="cover-1">
-<div class="segment-text-container">
-    <h1 class="segment-header">{yPosition} {segmentCheckpoints[1]} {windowHeight} Taking great care in raising the perfect Australian</h1>
-    <button class="segment-button"><a href="#seg-2" on:click|preventDefault={scrollToElement}>Learn More</a></button>
-</div>
+{#each segmentCheckpoints as checkpoint, i}
+<img id="background-{i+1}" class="bg" src='images/backgrounds/background-{i+1}.jpg' style="z-index: {0-i}; opacity: {i > 0 ? 1-(yPosition - segmentCheckpoints[i-1])/(checkpoint) : 1-(yPosition)/(checkpoint)};" alt="Aussies Background {i+1}"/>
+{/each}
+
+
+<Segment segmentId="home-segment" coverId="cover-1">
+<summary class="segment-text-container">
+    <header class="segment-header">Taking great care in raising the perfect Australian</header>
+    <button class="segment-button"><a href="#about-segment" on:click|preventDefault={scrollToElement}>Learn More</a></button>
+</summary>
 <div class="divider divider-1"></div>
 </Segment>
 
-<Segment segmentId="seg-2" coverId="cover-2">
+<Segment segmentId="about-segment" coverId="cover-2">
 
 </Segment>
 
@@ -243,23 +251,29 @@ $:
         font-size: clamp(var(--font-size-l), 2.8vmax, var(--font-size-xl));
         background-color: transparent;
         cursor: pointer;
-        font-family: 'Kalam', sans-serif;
+        font-family: 'Reem Kufi Fun', sans-serif;
         font-weight: 400;
+
         width: fit-content;
-        padding: 10px;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        word-spacing: 2px;
         align-self: center;
         border: none;
         color: #FEFDED;
         -webkit-text-stroke: 0px black;
         text-shadow: 2px 2px 8px black;
         transition: color 300ms;
-        text-transform: uppercase;
+
         /* animation */
         opacity: 0;
         animation: fade-in 1s ease;
         animation-delay: 2.6s;
         animation-fill-mode: forwards;
         
+    }
+    .segment-button > a {
+        color: #FEFDED;
     }
 
     .segment-button > a::after {
@@ -269,9 +283,9 @@ $:
         width: 0%;
         left: 0;
         right: 0;
-        bottom: 14px;
+        bottom: 0.2rem;
         margin: 0 auto;
-        height: 0.1rem;
+        height: 2px;
         background-color: #FEFDED;
         opacity: 0;
         transition: opacity 300ms, transform 300ms, width 400ms;
@@ -282,8 +296,8 @@ $:
     .segment-button:hover > a::after,
     .segment-button:focus > a::after {
         opacity: 1;
-        transform: translate3d(0, 0.2rem, 0);
-        width: 70%;
+        transform: translate3d(0, 0.4rem, 0);
+        width: 60%;
     }
 
 
