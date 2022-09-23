@@ -292,12 +292,17 @@ $: mapCheckpoints(windowHeight);
         box-shadow: 2px 3px 3px black;
 
     }
+    *:focus{
+        outline: none;
+    }
 
     .segment-button:hover > a::after,
     .segment-button:focus > a::after {
         opacity: 1;
         transform: translate3d(0, 0.4rem, 0);
         width: 60%;
+        outline: none;
+        border: none;
     }
 
 
