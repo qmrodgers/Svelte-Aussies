@@ -1,5 +1,10 @@
 <script lang="ts">
+    
+declare module '@fortawesome/pro-solid-svg-icons/index.es' {
+  export * from '@fortawesome/pro-solid-svg-icons';
+}
 import Fa from "svelte-fa"
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons/index.es'
 //container props
 export let reverse: boolean = false;
 export let reverseResponsive: boolean = false;
