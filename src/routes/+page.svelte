@@ -7,8 +7,10 @@ import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
 import Footer from '../components/Footer.svelte';
 import { onMount } from 'svelte';
-	import { validate_each_argument } from 'svelte/internal';
+import { validate_each_argument } from 'svelte/internal';
 
+import {faEnvelope, faPhoneSquare} from "@fortawesome/free-solid-svg-icons";
+import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 
 
 let currentSection: number = 0;
@@ -89,7 +91,7 @@ $: mapCheckpoints(windowHeight);
     </main>
 </Segment>
 
-<Footer icons={[{FaName: "faFlag", href: "#", alt: "flag"}]} aside="hello"/>
+<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "#", alt: "flag", exText: ""}, {FaName: faPhoneSquare, href: "#", alt: "Call us", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Reem Kufi Fun';" navStyle="opacity: 1;"/>
 <!-- end of Home Page HTML Content -->
 
 
