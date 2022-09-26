@@ -40,14 +40,11 @@ export let brandImgSrc: string;
     justify-content: center;
     padding-block: 1rem;
     width: 100%;
-    
 }
 
 .brand-box {
     align-self: center;
     justify-self: center;
-
-
 }
 .brand {
     width: 150px;
@@ -117,32 +114,29 @@ width: calc(100%/3);
     font-weight: inherit;
     letter-spacing: inherit;
     text-transform: uppercase;
-    
-    
 }
 
 .nav-link > span::after {
-  content: '';
-  position: absolute;
-  display: inline-flex;
-  width: 0%;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  margin: 0 auto;
-  height: 0.15rem;
-  background-color: #FEFDED;
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms, width 400ms;
-  box-shadow: 2px 3px 3px black;
-
+content: '';
+position: absolute;
+display: inline-flex;
+width: 0%;
+left: 0;
+right: 0;
+bottom: 2px;
+margin: 0 auto;
+height: 0.15rem;
+background-color: #FEFDED;
+opacity: 0;
+transition: opacity 300ms, transform 300ms, width 400ms;
+box-shadow: 2px 3px 3px black;
 }
 
 .nav-link:hover > span::after,
 .nav-link:focus > span::after {
   opacity: 1;
   transform: translate3d(0, 0.2rem, 0);
-  width: 70%;
+  width: 60%;
 }
 
 .nav-link:focus {

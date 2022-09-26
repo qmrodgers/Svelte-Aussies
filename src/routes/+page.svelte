@@ -5,6 +5,7 @@ export let data: import('./$types').PageData;
 
 import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
+import Footer from '../components/Footer.svelte';
 import { onMount } from 'svelte';
 	import { validate_each_argument } from 'svelte/internal';
 
@@ -37,27 +38,9 @@ export function scrollToElement({target}: any) {
     
 }
 
-
 onMount(() => {
 
 });
-
-const scrollTimeout = (position: number) => {setTimeout(() => {
-window.scrollTo({top: position, behavior: "smooth"})
-}, 1000)};
-
-export function scrollBetween(yValue: number) {
-
-    /*setTimeout(() => {
-        if (yPosition - yValue > 25) {
-        window.scrollTo({top: window.innerHeight, behavior: "smooth"});
-        console.log("hello");
-    }
-    }, 10)
-    */
-
-};
-
 
 function mapCheckpoints(Windowsize: number) {
 [...segmentCheckpoints].forEach((element, index) => {
@@ -67,13 +50,11 @@ segmentCheckpoints[index] = windowHeight * (index + 1);
 
 }
 
-
-
-
 $: mapCheckpoints(windowHeight);
 </script>
-
 <svelte:window bind:scrollY={yPosition} bind:innerHeight={windowHeight}/>
+
+
 
 
 <svelte:head>
@@ -83,36 +64,48 @@ $: mapCheckpoints(windowHeight);
 <meta name="keywords" content="Australian Shepherd, Puppies for Sale, Evansville Indiana, Dogs for Sale, Australian Shepherds, Aussies, Moonlight Aussies"/>
 <meta name="author" content="Quaid Rodgers"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-
 </svelte:head>
+
+
+
 <!-- Home Page HTML Content -->
-
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
-
 
 {#each segmentCheckpoints as checkpoint, i}
 <img id="background-{i+1}" class="bg" src='images/backgrounds/background-{i+1}.jpg' style="z-index: {0-i}; opacity: {i > 0 ? 1-(yPosition - segmentCheckpoints[i-1])/(checkpoint) : 1-(yPosition)/(checkpoint)};" alt="Aussies Background {i+1}"/>
 {/each}
 
-
 <Segment segmentId="home-segment" coverId="cover-1">
-<summary class="segment-text-container">
-    <header class="segment-header">Taking great care in raising the perfect Australian</header>
-    <button class="segment-button"><a href="#about-segment" on:click|preventDefault={scrollToElement}>Learn More</a></button>
-</summary>
-<div class="divider divider-1"></div>
+    <summary class="segment-text-container">
+        <header class="segment-header">Taking great care in raising the perfect Australian</header>
+        <button class="segment-button"><a href="#about-segment" on:click|preventDefault={scrollToElement}>Learn More</a></button>
+    </summary>
 </Segment>
 
 <Segment segmentId="about-segment" coverId="cover-2">
-
+    <main class="segment-text-container">
+        <h1 class="segment-header">Who we are</h1>
+        <p class="segment-body">Started in TBD, Moonlight Aussies has worked to ensure families leave with a friend that brings even more love than they could ever hope to give to them.</p>
+    </main>
 </Segment>
 
+<Footer icons={[{FaName: "faFlag", href: "#", alt: "flag"}]} aside="hello"/>
 <!-- end of Home Page HTML Content -->
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
+
+
+    .segment-body {
+        color: #FEFDED;
+        font-family: 'Amatic SC';
+        font-weight: 300;
+        word-spacing: 1px;
+        font-size: 3rem;
+        padding-inline: 10vw;
+        text-align: center;
+    }
 
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
@@ -120,10 +113,18 @@ $: mapCheckpoints(windowHeight);
         --primary-off-black: #2E2E2E;
         --focus-color: #274d24;
         font-size: 16px;
+        --font-size-l: 1.5rem;
+        --font-size-xl: 2rem;
+        --font-size-xxl: 3rem;
+        --font-size-jumbo: 4rem;
+
+
+        /*
         --font-size-l: calc(1rem * 1.618);
         --font-size-xl: calc(var(--font-size-l) * 1.618);
         --font-size-xxl: calc(var(--font-size-xl) * 1.618);
         --font-size-jumbo: calc(var(--font-size-xxl) * 1.618);
+        */
         box-sizing: border-box;
 
     }
@@ -211,53 +212,29 @@ $: mapCheckpoints(windowHeight);
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: 0.30vw;
-        font-size: clamp(var(--font-size-xxl), 5vmax, 200px);
+        font-size: var(--font-size-jumbo);
         text-align:center;
         align-self: center;
         border-radius: 8px;
-
-        
-        /* -webkit-text-fill-color: #FEFDED; Will override color (regardless of order) */
-        /* -webkit-text-stroke-width: 2px; */
-        /* -webkit-text-stroke-color: black; */
-        
-        /* animation */
         opacity: 0;
         width: 80%;
-        /*background-color: hsla(0, 0%, 8%, 0.5);
-                backdrop-filter: blur(8px);
-        */
         animation: fade-in-translate 2.2s ease;
         animation-delay: 400ms;
         animation-fill-mode: forwards;
     }
-
-
-    /*
-    .divider {
-        background-color: #FEFDED;
-        height: 100%;
-        width: 2px;
-        border-radius: 4px;
-        justify-self: center;
-        align-self: center;
-        grid-column: 14 / 14;
-        grid-row: 6 / 19;
-        box-shadow: 2px 2px 3px black;
-    }
-    */
     .segment-button {
         position: relative;
-        font-size: clamp(var(--font-size-l), 2.8vmax, var(--font-size-xl));
+        font-size: var(--font-size-xxl);
         background-color: transparent;
         cursor: pointer;
-        font-family: 'Reem Kufi Fun', sans-serif;
-        font-weight: 400;
+        font-family: 'Amatic SC', sans-serif;
+        font-weight: 700;
 
         width: fit-content;
         padding: 0 10px 0 10px;
         text-transform: uppercase;
         word-spacing: 2px;
+        letter-spacing: 2px;
         align-self: center;
         border: none;
         color: #FEFDED;
@@ -283,7 +260,7 @@ $: mapCheckpoints(windowHeight);
         width: 0%;
         left: 0;
         right: 0;
-        bottom: 0.2rem;
+        bottom: 0.15rem;
         margin: 0 auto;
         height: 2px;
         background-color: #FEFDED;
@@ -310,7 +287,7 @@ $: mapCheckpoints(windowHeight);
     @media screen and (max-width: 1280px) {
         .segment-text-container {
         grid-column: 2/24;
-        grid-row: 1/21;
+        grid-row: 1/19;
         
         }
 
