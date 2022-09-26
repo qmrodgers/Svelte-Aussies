@@ -91,7 +91,7 @@ $: mapCheckpoints(windowHeight);
     </main>
 </Segment>
 
-<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "#", alt: "flag", exText: ""}, {FaName: faPhoneSquare, href: "#", alt: "Call us", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Reem Kufi Fun';" navStyle="opacity: 1;"/>
+<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "#", alt: "flag", exText: ""}, {FaName: faPhoneSquare, href: "#", alt: "Call us", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
 <!-- end of Home Page HTML Content -->
 
 
