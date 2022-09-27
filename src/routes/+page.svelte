@@ -14,7 +14,7 @@ import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 
 
 let currentSection: number = 0;
-const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "#home-segment"}, {name: "About", uri: "#about-segment"}, {name: "Dogs", uri: "#dogs-segment"},  {name: "Contact", uri: "#contact-segment"}];
+const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "#home-segment"}, {name: "About", uri: "#about-segment"},  {name: "Contact", uri: "#contact-segment"}];
 
 let segmentCheckpoints: number[] = new Array<number>(2);
 let currentCheckpoint: number = 0;
@@ -91,7 +91,7 @@ $: mapCheckpoints(windowHeight);
     </main>
 </Segment>
 
-<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "#", alt: "flag", exText: ""}, {FaName: faPhoneSquare, href: "#", alt: "Call us", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
+<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "mailto:dangrimwood812@gmail.com", alt: "Contact through Email", exText: ""}, {FaName: faPhoneSquare, href: "tel:+18126296621", alt: "Call Daniel Grimwood at (812) 629-6621", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
 <!-- end of Home Page HTML Content -->
 
 
@@ -99,34 +99,36 @@ $: mapCheckpoints(windowHeight);
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
 
-    .segment-body {
-        color: #FEFDED;
-        font-family: 'Amatic SC';
-        font-weight: 300;
-        word-spacing: 1px;
-        font-size: 3rem;
-        padding-inline: 10vw;
-        text-align: center;
+
+
+    :global(::-webkit-scrollbar) {
+        width: .5rem;
+
+    }
+
+    :global(::-webkit-scrollbar-track) {
+        background: #161816;
+        overflow:hidden;
+
+    }
+
+    :global(::-webkit-scrollbar-thumb) {
+        background: linear-gradient(to bottom, var(--focus-color), var(--light-green), var(--focus-color));
+
+
     }
 
     :global(:root) {
         --primary-off-white: hsl(0, 0%, 96%);
         --primary-white: hsl(0, 0%, 100%);
         --primary-off-black: #2E2E2E;
+        --light-green: #3C7438;
         --focus-color: #274d24;
         font-size: 16px;
         --font-size-l: 1.5rem;
         --font-size-xl: 2rem;
         --font-size-xxl: 3rem;
         --font-size-jumbo: 4rem;
-
-
-        /*
-        --font-size-l: calc(1rem * 1.618);
-        --font-size-xl: calc(var(--font-size-l) * 1.618);
-        --font-size-xxl: calc(var(--font-size-xl) * 1.618);
-        --font-size-jumbo: calc(var(--font-size-xxl) * 1.618);
-        */
         box-sizing: border-box;
 
     }
@@ -152,6 +154,17 @@ $: mapCheckpoints(windowHeight);
     :global(body > div) {
         width: 100vw;
     }
+
+    .segment-body {
+        color: #FEFDED;
+        font-family: 'Amatic SC';
+        font-weight: 300;
+        word-spacing: 1px;
+        font-size: 3rem;
+        padding-inline: 10vw;
+        text-align: center;
+    }
+
     .bg {
 
     position: fixed;
@@ -314,7 +327,12 @@ $: mapCheckpoints(windowHeight);
         :global(#background-1) {
         
         top: -40vh;
-        right: -130%;
+        right: max(-150%, -100vw);
+    }
+
+    :global(#background-2) {
+        top: -15vh;
+        right: max(-150%, -100vw);
     }
 
     }

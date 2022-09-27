@@ -57,7 +57,7 @@ background: transparent;
 footer >  * {
 width: clamp(50%, 100%, 100%);
 display: flex;
-padding-inline: 4rem;
+padding-inline: 1rem;
 gap: 1rem;
 }
 
