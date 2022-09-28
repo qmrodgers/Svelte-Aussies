@@ -97,7 +97,7 @@ $: mapCheckpoints(windowHeight);
 <Segment segmentId="contact-segment" coverId="cover-3">
     <article class="segment-text-container">
         <header class="segment-header">Contact Us</header>
-        <p class="segment-body">For information on currently available pups, or to get a quote, contact Daniel Grimwood at <a href="tel:+18126296621">(812) 629-6621</a> or via email at <a href="mailto:dangrimwood812@gmail.com">dangrimwood812@gmail.com</a></p>
+        <p class="segment-body">For information on currently available pups, or to get a quote, contact Daniel Grimwood at <a href="tel:+18126296621">(812) 629-6621</a> or via email at <a href="mailto:dangrimwood812@gmail.com">dangrimwood812@gmail.com</a>. Visit us on <a href="https://www.facebook.com/moonlightaussies/">Facebook</a>!</p>
         <button class="segment-button"><a href="#home-segment" on:click|preventDefault={scrollToElement}>Back to top</a></button>
     </article>
 </Segment>
@@ -174,6 +174,10 @@ $: mapCheckpoints(windowHeight);
         font-size: clamp(2rem, 3.5vw, 3rem);
         padding-inline: 10vw;
         text-align: center;
+    }
+
+    .segment-body > a {
+        font-weight: 600;
     }
 
     .bg {
