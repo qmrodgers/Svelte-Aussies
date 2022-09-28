@@ -16,7 +16,7 @@ import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 let currentSection: number = 0;
 const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "#home-segment"}, {name: "About", uri: "#about-segment"},  {name: "Contact", uri: "#contact-segment"}];
 
-let segmentCheckpoints: number[] = new Array<number>(2);
+let segmentCheckpoints: number[] = new Array<number>(4);
 let currentCheckpoint: number = 0;
 
 let windowHeight: number;
@@ -46,7 +46,7 @@ onMount(() => {
 
 function mapCheckpoints(Windowsize: number) {
 [...segmentCheckpoints].forEach((element, index) => {
-segmentCheckpoints[index] = windowHeight * (index + 1);
+segmentCheckpoints[index] = windowHeight * index;
 
 });
 
@@ -74,21 +74,32 @@ $: mapCheckpoints(windowHeight);
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
 
 {#each segmentCheckpoints as checkpoint, i}
-<img id="background-{i+1}" class="bg" src='images/backgrounds/background-{i+1}.jpg' style="z-index: {0-i}; opacity: {i > 0 ? 1-(yPosition - segmentCheckpoints[i-1])/(checkpoint) : 1-(yPosition)/(checkpoint)};" alt="Aussies Background {i+1}"/>
+{#if i > 0}
+<img id="background-{i}" class="bg" src='images/backgrounds/background-{i}.jpg' style="z-index: {0-i}; opacity: {yPosition >= segmentCheckpoints[i-1] ? (1.1-((yPosition - segmentCheckpoints[i-1])/(checkpoint - segmentCheckpoints[i-1]) + .1)) : 1};" alt="Aussies Background {i+1}"/>
+{/if}
 {/each}
 
 <Segment segmentId="home-segment" coverId="cover-1">
     <summary class="segment-text-container">
-        <header class="segment-header">Taking great care in raising the perfect Australian</header>
+        <header class="segment-header">Taking great care in raising the perfect Australian pups</header>
         <button class="segment-button"><a href="#about-segment" on:click|preventDefault={scrollToElement}>Learn More</a></button>
     </summary>
 </Segment>
 
 <Segment segmentId="about-segment" coverId="cover-2">
     <main class="segment-text-container">
-        <h1 class="segment-header">Who we are</h1>
-        <p class="segment-body">Started in TBD, Moonlight Aussies has worked to ensure families leave with a friend that brings even more love than they could ever hope to give to them.</p>
+        <header class="segment-header">Who we are</header>
+        <p class="segment-body">Started in 2015, Moonlight Aussies has continuously worked to ensure that families leave with a loving friend who'll bring them joy for years to come.</p>
+        <button class="segment-button"><a href="#contact-segment" on:click|preventDefault={scrollToElement}>Get in touch</a></button>   
     </main>
+</Segment>
+
+<Segment segmentId="contact-segment" coverId="cover-3">
+    <article class="segment-text-container">
+        <header class="segment-header">Contact Us</header>
+        <p class="segment-body">For information on currently available pups, or to get a quote, contact Daniel Grimwood at <a href="tel:+18126296621">(812) 629-6621</a> or via email at <a href="mailto:dangrimwood812@gmail.com">dangrimwood812@gmail.com</a></p>
+        <button class="segment-button"><a href="#home-segment" on:click|preventDefault={scrollToElement}>Back to top</a></button>
+    </article>
 </Segment>
 
 <Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "mailto:dangrimwood812@gmail.com", alt: "Contact through Email", exText: ""}, {FaName: faPhoneSquare, href: "tel:+18126296621", alt: "Call Daniel Grimwood at (812) 629-6621", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
@@ -160,7 +171,7 @@ $: mapCheckpoints(windowHeight);
         font-family: 'Amatic SC';
         font-weight: 300;
         word-spacing: 1px;
-        font-size: 3rem;
+        font-size: clamp(2rem, 3.5vw, 3rem);
         padding-inline: 10vw;
         text-align: center;
     }
@@ -189,6 +200,10 @@ $: mapCheckpoints(windowHeight);
     :global(#background-2) {
         
         top: min(-15vw,-5vh);
+    }
+
+    :global(#background-3) {
+        top: min(-10vw,-5vh);
     }
 
     @keyframes fade-in-translate {
@@ -227,7 +242,7 @@ $: mapCheckpoints(windowHeight);
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: 0.30vw;
-        font-size: var(--font-size-jumbo);
+        font-size: clamp(var(--font-size-xxl), 4vw,var(--font-size-jumbo));
         text-align:center;
         align-self: center;
         border-radius: 8px;
@@ -268,7 +283,11 @@ $: mapCheckpoints(windowHeight);
         color: #FEFDED;
     }
 
-    .segment-button > a::after {
+    .segment-body > a {
+        position: relative;
+    }
+
+    .segment-button > a::after, .segment-body > a::after {
         content: '';
         position: absolute;
         display: inline-flex;
@@ -284,6 +303,22 @@ $: mapCheckpoints(windowHeight);
         box-shadow: 2px 3px 3px black;
 
     }
+
+
+
+    .segment-body > a::after {
+        bottom: .35rem;
+        height: 1px;
+    }
+
+    .segment-body > a:hover::after, .segment-body > a:focus::after {
+        opacity: 1;
+        transform: translate3d(0, 0.4rem, 0);
+        width: 80%;
+        outline: none;
+        border: none;
+    }
+
     *:focus{
         outline: none;
     }
@@ -299,6 +334,9 @@ $: mapCheckpoints(windowHeight);
 
 
     
+
+
+    
     @media screen and (max-width: 1280px) {
         .segment-text-container {
         grid-column: 2/24;
@@ -309,7 +347,10 @@ $: mapCheckpoints(windowHeight);
         :global(#background-1) {
         
         
-        right: -30%;
+        left: -600px;
+    }
+    :global(#background-3) {
+        left: -500px;
     }
         
 
@@ -319,20 +360,25 @@ $: mapCheckpoints(windowHeight);
 
     @media screen and (max-width: 900px) {
         :global(.segment > .segment-bg) {
-            left: -45vh !important;
+            left: -750px !important;
             top: 0 !important;
         }
 
 
         :global(#background-1) {
         
-        top: -40vh;
-        right: max(-150%, -100vw);
+        top: -35vh;
+        left: -750px;
     }
 
     :global(#background-2) {
         top: -15vh;
-        right: max(-150%, -100vw);
+        left: -750px;
+    }
+
+    :global(#background-3) {
+        top: -15vh;
+        left: -750px;
     }
 
     }

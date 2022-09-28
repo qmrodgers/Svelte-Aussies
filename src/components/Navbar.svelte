@@ -86,7 +86,7 @@
 	}
 	.brand {
         position: relative;
-		width: 125px;
+		width: 140px;
 	}
 	.link-box {
 		font-size: inherit;
