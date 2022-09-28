@@ -1,7 +1,6 @@
 
 
 <script lang="ts">
-export let data: import('./$types').PageData;
 
 import Segment from '../components/Segment.svelte';
 import Navbar from '../components/Navbar.svelte';
@@ -289,6 +288,7 @@ $: mapCheckpoints(windowHeight);
 
     .segment-body > a {
         position: relative;
+        white-space: nowrap;
     }
 
     .segment-button > a::after, .segment-body > a::after {
