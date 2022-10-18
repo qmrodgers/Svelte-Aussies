@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  svelte-aussies-app:
+    container_name: svelte-aussies-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ./
+
+  caddy:
+    image: caddy/caddy:latest
+    container_name: caddy-reverse-proxy-for-svelte-aussies
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
