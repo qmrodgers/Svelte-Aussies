@@ -65,6 +65,7 @@ $: mapCheckpoints(windowHeight);
 <meta name="keywords" content="Australian Shepherd, Puppies for Sale, Evansville Indiana, Dogs for Sale, Australian Shepherds, Aussies, Moonlight Aussies"/>
 <meta name="author" content="Quaid Rodgers"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preload" as="image" href="images/backgrounds/background-1.jpg"/>
 </svelte:head>
 
 
@@ -106,7 +107,6 @@ $: mapCheckpoints(windowHeight);
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
 
 
