@@ -1,4 +1,4 @@
-moonlight-aussies.com {
+moonlight-aussies.com, https://moonlight-aussies.com, www.moonlight-aussies.com, https://www.moonlight-aussies.com {
     reverse_proxy svelte-aussies-app:3000 {
         header_down Strict-Transport-Security max-age=31536000;
     }
