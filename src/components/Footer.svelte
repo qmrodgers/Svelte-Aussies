@@ -46,7 +46,7 @@ export let emailAlt: string = "";
 footer {
 z-index: 2;
 position: fixed;
-bottom: 0;
+top: 0;
 left: 0;
 width: 100vw;
 display: flex;

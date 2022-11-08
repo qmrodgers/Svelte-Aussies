@@ -7,10 +7,8 @@ import Navbar from '../components/Navbar.svelte';
 import Footer from '../components/Footer.svelte';
 import { onMount } from 'svelte';
 import { validate_each_argument } from 'svelte/internal';
-
 import {faEnvelope, faPhoneSquare} from "@fortawesome/free-solid-svg-icons";
 import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
-
 
 let currentSection: number = 0;
 const NavLinks: {name: string, uri: string}[] = [{name: "Home", uri: "#home-segment"}, {name: "About", uri: "#about-segment"},  {name: "Contact", uri: "#contact-segment"}];
@@ -67,8 +65,6 @@ $: mapCheckpoints(windowHeight);
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="preload" as="image" href="images/backgrounds/background-1.jpg"/>
 </svelte:head>
-
-
 
 <!-- Home Page HTML Content -->
 <Navbar navLinks={NavLinks} navIsOverlay={true} brandImgSrc="images\logo\2x\MALogo.png"/>
