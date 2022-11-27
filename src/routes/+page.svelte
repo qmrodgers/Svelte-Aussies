@@ -98,7 +98,7 @@ $: mapCheckpoints(windowHeight);
     </article>
 </Segment>
 
-<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/moonlightaussies/", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "mailto:dangrimwood812@gmail.com", alt: "Contact through Email", exText: ""}, {FaName: faPhoneSquare, href: "tel:+18126296621", alt: "Call Daniel Grimwood at (812) 629-6621", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
+<Footer icons={[{FaName: faFacebookSquare, href: "https://www.facebook.com/profile.php?id=100088232730593", alt: "Visit us on Facebook!", exText: ""}, {FaName: faEnvelope, href: "mailto:dangrimwood812@gmail.com", alt: "Contact through Email", exText: ""}, {FaName: faPhoneSquare, href: "tel:+18126296621", alt: "Call Daniel Grimwood at (812) 629-6621", exText: ""}]} aside="© Moonlight Aussies" asideStyle="color: #FEFDED; font-size: 1rem;" iconSize="lg" fontSize="var(--font-size-l)" style="font-family: 'Amatic SC';" navStyle="opacity: 1;"/>
 <!-- end of Home Page HTML Content -->
 
 
