@@ -30,6 +30,7 @@ export let emailAlt: string = "";
 
     <!-- Social media, email shorthands-->
     <nav class="nav" class:navReversed={reverseNav} style={navStyle}>
+        Contact us
         {#if emailAddress != "#"}
         <address>
             <a href={`mailto:${emailAddress}`} title={emailAlt}>{addressTitle}</a>
